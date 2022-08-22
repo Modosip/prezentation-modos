@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}TEST IN{% endblock %}
+
+{% block content %}
+<div class="row">
+
+    <div class="col-12 col-md-2 bd-sidebar border-right pl-5">
+        <div class="mb-2">
+         <input type=button class="btn btn-outline-dark" value="Вернуться" onClick="javascript:history.go(-1);">
+        </div>
+        <div class="sidebar-start-items">
+    {% for d in data %}
+<!--        <p> Name: {{ d.user }} ID <b>({{ d.user.id }})</b></p>-->
+         <div class="items_list">
+             <div class="text-wrap">
+                 <a href="{{ d.database.url }}">{{ d.filename }}</a>
+             </div>
+             <div>
+                 ({{ d.published|date:"d.m.Y H:i"}})
+             </div>
+
+         </div>
+            <br>
+    {% endfor %}
+        </div>
+    </div>
+
+
+    <div class="col-12 col-md-8 bd-sidebar">
+        <h2> ОБЩАЯ ТАБЛИЦА</h2>
+        <div class="table-responsive mb-4">
+            {{table|safe}}
+        </div>
+    </div>
+
+
+
+    <div class="col-12 col-md-2 bd-sidebar border-left pl-5">
+        {% for el in df_table_column.keys %}
+            <p>{{el}}</p>
+        {% endfor %}
+    </div>
+
+{% endblock %}
